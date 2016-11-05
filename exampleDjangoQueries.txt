@@ -1,0 +1,38 @@
+
+# for year=CurrentYear
+	visitType=New
+	person=PwC
+	timeStamp in CurrentQuartile
+	centre = SomeCentre
+
+ourCentre = Centre.objects.all.filter(location='SomeLocation', region='SomeRegion').get()
+
+record1 = Record.objects.filter(visitType = VisitType(visitType = 'New'), person = Person(person='PwC'), centre = ourCentre)
+
+# for year=CurrentYear-1
+	visitType=New
+	person=PwC
+	timeStamp in CurrentQuartile - 1 year
+	centre = SomeCentre
+
+
+# calculate percentage ration (new PwCs percentage increase)
+
+	# the same, just with person=Carer
+	visitType=New
+	person=Carer
+	timeStamp in CurrentQuartile
+	centre = SomeCentre
+
+
+
+# total visits in certain quartile
+count(record)
+	centre = SomeCentre
+	timeStamp in CurrentQuartile
+
+# total visits in certain quartile - 1 year
+
+# percentage growth of total visits
+
+
