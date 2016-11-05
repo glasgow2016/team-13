@@ -23,6 +23,13 @@ def save_request(request):
                         natureOfVisit=request.body['nature_of_visit'],
                         cancerSite=request.body['cancer_site'])
         record.save()
+        # activities = [{"category": "abc", "isCore": True, "name": "dsfd"}]
+        for e in request.body['activities']:
+            a = Activity(name=e['name'],
+                         isCore=e['isCore'],
+                         category=e['category'],
+                         record=record)
+            a.save()
 
 
 def login(request):
