@@ -1,15 +1,17 @@
 from django.shortcuts import render
+import datetime
+
 from django.http import HttpResponse, JsonResponse
 from .models import *
 import json
 # Create your views here
 
-def index(request):
-	return render(request, "index.html")
 
+def index(request):
+    return render(request, "index.html")
 def login(request):
 	userData = json.loads(request.body)
-	
+
 	username = userData["username"]
 	password = userData["password"]
 
@@ -32,13 +34,3 @@ def activities(request):
 				
 	return JsonResponse({"activities": activities_list})
 
-# def runscript(request):
-
-# 	gender = Gender.objects.first()
-
-# 	print gender.gender
-
-# 	record = Record(gender=gender)
-# 	record.save()
-
-# 	return HttpResponse("ok")

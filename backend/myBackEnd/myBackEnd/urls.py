@@ -19,8 +19,8 @@ from django.contrib import admin
 
 urlpatterns = [
 
-	url(r'^admin/', include(admin.site.urls)),
-	url(r'^index/', include('myBackEndApp.urls', namespace="myBackEndApp")),
-    url(r'^api/', include('myBackEndApp.urls', namespace="myBackEndApp"))
+	url(r'^admin/$', include(admin.site.urls)),
+	url(r'^index/$', include('myBackEndApp.urls', namespace="myBackEndApp")),
+    url(r'^api/$', include('myBackEndApp.urls', namespace="myBackEndApp"))
 
 ]

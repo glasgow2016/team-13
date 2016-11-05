@@ -1,14 +1,14 @@
 Record
-	PERSON
+	person
 	timeStamp
 	gender
 	age
 	visitType
-	NATUREOFVISIT
+	natureOfVisit
 	journeyStage
 	addedBy
 	cancerSite
-	CENTRE
+	centre
 
 Age
 	age
@@ -35,7 +35,8 @@ Centre
 	name
 	location
 	region
+	YEAROPENING
 
 
 StaffMember
-	CENTRE
+	centre
