@@ -1,0 +1,64 @@
+TABLE nature_of_visit
+Booked
+Drop-In
+Programme
+E-mail Support
+Fundraising
+Outreach
+Telephone Support
+
+TABLE person
+PwC
+Carer
+Professional
+Architectural
+International
+Other Visitor
+
+TABLE staff_group
+Centre Head
+CSS
+Psychologist
+Benefits Advisor
+Fundraiser
+Sessional Staff
+
+TABLE journey_stage
+Pre-Diagnosis
+Curative Intent
+Post Treatment - Curative Intent
+Non-Curative Intent
+Palliative Care
+End of Life
+Bereaved
+Not Stated
+
+TABLE cancer_site
+Brain/CNS
+Breast
+Gynae
+Head/Neck
+Haemat
+Liver
+Lower GI
+Lung
+Pancreatic
+Prostate
+Rare
+Sarcoma
+Skin/Mel
+Testicular
+Unknown Primary
+Upper GI
+Urolog
+Not Stated
+
+TABLE gender
+Male
+Female
+Under 18 Male
+Under 18 Female
+
+TABLE visit_type
+New
+Returning
