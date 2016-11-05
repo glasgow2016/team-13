@@ -1,0 +1,9 @@
+Person;person
+Visit Type;visit_type
+Gender;gender
+Cancer Site;cancer_site
+Journey Stage;journey_stage
+Nature of Visit;nature_of_visit
+1st Activity;activity[]
+2nd Activity;activity[]
+3rd Activity;activity[]
