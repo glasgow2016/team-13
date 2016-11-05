@@ -6,6 +6,18 @@ from .models import *
 def index(request):
 	return render(request, "index.html")
 
-def post(request):
+def login(request):
+	userData = json.loads(request.body)
 	
-	return HttpResponse("OK")
+	username = userData["username"]
+	password = userData["password"]
+
+	user = StaffMember.objects.get(username = username)
+
+	if user.password == password:
+		return JsonResponse({"Status" : "Success",
+							 "email" : user.email})
+	else:
+		return JsonResponse({"Status" : "Fail"})
+
+

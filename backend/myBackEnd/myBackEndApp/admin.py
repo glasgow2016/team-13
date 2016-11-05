@@ -4,7 +4,6 @@ from .models import *
 
 admin.site.register(StaffMember)
 admin.site.register(VisitType)
-admin.site.register(VisitorType)
 admin.site.register(JourneyStage)
 admin.site.register(NatureOfVisit)
 admin.site.register(CancerSite)

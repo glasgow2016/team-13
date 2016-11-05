@@ -13,10 +13,6 @@ class VisitType (models.Model):
 	ID = models.AutoField(primary_key = True)
 	visitType = models.CharField(default = '', max_length = 100)
 
-class VisitorType (models.Model):
-	ID = models.AutoField(primary_key = True)
-	visitorType = models.CharField(default = '', max_length = 100)
-
 class JourneyStage (models.Model):
 	ID = models.AutoField(primary_key = True)
 	joureyStage = models.CharField(default = '', max_length = 100)
@@ -78,7 +74,6 @@ class Record (models.Model):
 	age = Age()
 	person = Person()
 	visitType = VisitType()
-	visitorType = VisitorType()
 	journeyStage = JourneyStage()
 	natureOfVisit = NatureOfVisit()
 	cancerSite = CancerSite()
