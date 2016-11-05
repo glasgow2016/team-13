@@ -56,8 +56,10 @@ Not Stated
 TABLE gender
 Male
 Female
-Under 18 Male
-Under 18 Female
+
+TABLE age
+Under 18
+Over 18
 
 TABLE visit_type
 New
