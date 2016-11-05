@@ -15,52 +15,60 @@ class StaffMember (models.Model):
 		return self.name
 
 class VisitType (models.Model):
-	vType = models.CharField(default = '', max_length = 100)
+	id = models.AutoField(primary_key = True)
+	visitType = models.CharField(default = '', max_length = 100)
 
 class VisitorType (models.Model):
-	vType = models.CharField(default = '', max_length = 100)
+	id = models.AutoField(primary_key = True)
+	visitorType = models.CharField(default = '', max_length = 100)
 
 class JourneyStage (models.Model):
-	stage = models.CharField(default = '', max_length = 100)
+	id = models.AutoField(primary_key = True)
+	joureyStage = models.CharField(default = '', max_length = 100)
 
-class VisitNature (models.Model):
-	nature = models.CharField(default = '', max_length = 100)
+class NatureOfVisit (models.Model):
+	id = models.AutoField(primary_key = True)
+	natureOfVisit = models.CharField(default = '', max_length = 100)
 
 class CancerSite (models.Model):
-	site = models.CharField(default = '', max_length = 100)
+	id = models.AutoField(primary_key = True)
+	cancerSite = models.CharField(default = '', max_length = 100)
 
 class Activity (models.Model):
-	activityID = models.AutoField(primary_key=True)
+	id = models.AutoField(primary_key=True)
 	name = models.CharField(default = '', max_length = 50)
 	category = models.CharField(default = '', max_length = 50)
-	activityType = models.BooleanField(default=True)
+	isCore = models.BooleanField(default=True)
 	def __init__(self):
 		return self.name
 
 class Activity_Record (models.Model):
-	activityID = models.IntegerField(default = 0)
-	recordID = models.IntegerField(default = 0)
+	id = models.AutoField(primary_key = True)
+	activity = models.IntegerField(default = 0)
+	record = models.IntegerField(default = 0)
 	timeStamp = models.DateTimeField()
 
 class StaffMember_Record (models.Model):
+	id = models.AutoField(primary_key = True)
 	staffMember = models.CharField(default = '', max_length = 50)
-	recordID = models.IntegerField(default = 0)
+	record = models.IntegerField(default = 0)
 	timeStamp = models.DateTimeField()
 
+class Gender (models.Model):
+	id = models.AutoField(primary_key = True)
+	gender = models.CharField(default = '', max_length = 50)
+
+class Age (models.Model):
+	id = models.AutoField(primary_key = True)
+	age = models.CharField(default = '', max_length = 50)
 
 class Record (models.Model):
-	recordID = models.AutoField(primary_key = True)
+	id = models.AutoField(primary_key = True)
 	timeStamp = models.DateTimeField()
-	gender = models.CharField(default = '', max_length = 50)
+	gender = Gender()
+	age = Age()
 	visitType = VisitType()
 	visitorType = VisitorType()
 	journeyStage = JourneyStage()
-	visitNature = VisitNature()
-	site = CancerSite()
-
-
-
-
-
-
-
+	natureOfVisit = NatureOfVisit()
+	cancerSite = CancerSite()
