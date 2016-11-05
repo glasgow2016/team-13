@@ -1,9 +1,11 @@
 @import 'misc/resets';
 @import 'misc/colors';
+@import 'components/footer';
 
 body {
   background: @bg-grey;
   color: @black;
+  position: relative;
 }
 
 h2 {
@@ -51,6 +53,10 @@ h2 {
           cursor: pointer;
         }
 
+        &.active {
+          border: 4px solid #4CAF50;
+        }
+
         span {
           display: block;
 
@@ -74,7 +80,14 @@ h2 {
             &.fa-user {
               color: #2196F3;
             }
-          ;
+
+            &.fa-globe {
+              color: #795548;
+            }
+
+            &.fa-building-o {
+              color: #607D8B;
+            }
           }
         }
       }
