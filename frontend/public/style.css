@@ -68,3 +68,9 @@ h2 {
 .step__wrapper .step .choices > div span .fa.fa-user {
   color: #2196F3;
 }
+.step__wrapper .step .choices > div span .fa.fa-globe {
+  color: #795548;
+}
+.step__wrapper .step .choices > div span .fa.fa-building-o {
+  color: #607D8B;
+}
