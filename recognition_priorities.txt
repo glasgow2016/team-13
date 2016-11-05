@@ -1,0 +1,5 @@
+gender
+age
+visit_type
+person
+cancer_type
