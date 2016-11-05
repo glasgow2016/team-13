@@ -46,6 +46,9 @@ h2 {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.step__wrapper .step .choices.small > div {
+  height: 50px;
+}
 .step__wrapper .step .choices > div {
   width: 178px;
   height: 178px;
