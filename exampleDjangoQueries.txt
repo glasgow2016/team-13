@@ -5,9 +5,13 @@
 	timeStamp in CurrentQuartile
 	centre = SomeCentre
 
+now = datetime.datetime.now()
+low = datetime.datetime(year=now.year, month=1, day=1)
+high = datetime.datetime(year=now.year, month=1, day=1)
+
 ourCentre = Centre.objects.all.filter(location='SomeLocation', region='SomeRegion').get()
 
-record1 = Record.objects.filter(visitType = VisitType(visitType = 'New'), person = Person(person='PwC'), centre = ourCentre)
+record1 = Record.objects.filter(visitType = VisitType(visitType = 'New'), person = Person(person='PwC'), centre = ourCentre, timeStamp.timeStamp >  )
 
 # for year=CurrentYear-1
 	visitType=New
