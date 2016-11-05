@@ -11,13 +11,54 @@
     <script src="https://use.typekit.net/ubb7zko.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="public/jquery.fullpage.js"></script>
     <link rel="stylesheet" href="public/font-awesome.min.css">
     <link rel="stylesheet" href="public/style.css">
+    <link rel="stylesheet" href="public/jquery.fullpage.css">
 </head>
-<body>
-<div class="step__wrapper">
+<body class="page">
+<div id="fullpage">
+
+    <div class="step__wrapper section">
+        <div class="step">
+            <h2>Person</h2>
+            <div class="choices">
+                <div><span><i class="fa fa-heartbeat" aria-hidden="true"></i>PwC</span></div>
+                <div><span><i class="fa fa-medkit" aria-hidden="true"></i>Carer</span></div>
+                <div><span><i class="fa fa-user" aria-hidden="true"></i>Professional</span></div>
+                <div><span><i class="fa fa-building-o" aria-hidden="true"></i>Architectural</span></div>
+                <div><span><i class="fa fa-globe" aria-hidden="true"></i>International</span></div>
+                <div><span><i class="fa fa-question-circle" aria-hidden="true"></i>Other Visitor</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step__wrapper section">
+        <div class="step">
+            <h2>Visit Type</h2>
+            <div class="choices">
+                <div><span><i class="fa fa-heartbeat" aria-hidden="true"></i>New</span></div>
+                <div><span><i class="fa fa-medkit" aria-hidden="true"></i>Returning</span></div>
+
+            </div>
+        </div>
+    </div>
+
+<div class="step__wrapper section">
     <div class="step">
-        <h2>Person Type</h2>
+        <h2>Gender</h2>
+        <div class="choices">
+            <div><span><i class="fa fa-heartbeat" aria-hidden="true"></i>Male</span></div>
+            <div><span><i class="fa fa-medkit" aria-hidden="true"></i>Under 18 Male</span></div>
+            <div><span><i class="fa fa-heartbeat" aria-hidden="true"></i>Female</span></div>
+            <div><span><i class="fa fa-medkit" aria-hidden="true"></i>Under 18 Female</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="step__wrapper section">
+    <div class="step">
+        <h2>Cancer Site</h2>
         <div class="choices">
             <div><span><i class="fa fa-heartbeat" aria-hidden="true"></i>PwC</span></div>
             <div><span><i class="fa fa-medkit" aria-hidden="true"></i>Carer</span></div>
@@ -28,21 +69,50 @@
         </div>
     </div>
 </div>
+
+</div>
 <div class="footer">
     <span class="back"><a href="#">BACK</a></span>
     <span class="next"><a href="#q2">NEXT</a></span>
 </div>
 <script>
-    $('.choices > div').on('click', function (e) {
+    $('.choices > div').on('click', function () {
         var current = $(this);
         if(!current.hasClass('active')) {
-            $('.choices > div').removeClass('active');
+            current.parent().find('div').removeClass('active');
             current.addClass('active');
         } else {
             current.removeClass('active');
         }
+    });
 
-    })
+
+    $('#fullpage').fullpage({
+        onLeave: function(index, nextIndex, direction){
+//            var leavingSection = $(this);
+//
+//            //after leaving section 2
+//            if(index == 2 && direction =='down'){
+//                alert("Going to section 3!");
+//            }
+//
+//            else if(index == 2 && direction == 'up'){
+//                alert("Going to section 1!");
+//            }
+        }
+    });
+
+    $('.back').on('click', function (e) {
+        e.preventDefault();
+        $.fn.fullpage.moveSectionUp();
+    });
+
+    $('.next').on('click', function (e) {
+        e.preventDefault();
+        $.fn.fullpage.moveSectionDown();
+    });
+
+
 </script>
 </body>
 </html>
