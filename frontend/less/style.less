@@ -1,1 +1,83 @@
 @import 'misc/resets';
+@import 'misc/colors';
+
+body {
+  background: @bg-grey;
+  color: @black;
+}
+
+h2 {
+  font-size: 42px;
+}
+
+.step__wrapper {
+  height: 100vh;
+  position: relative;
+
+  .step {
+    /* vertical center */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    padding: 0 30px;
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .choices {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+
+      > div {
+        width: 178px;
+        height: 178px;
+        background: @white;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 22px;
+        border: 1px solid darken(@white, 10%);
+        transition: box-shadow .3s, border-color .3s;
+        position: relative;
+
+        &:hover {
+          box-shadow: 0px 8px 50px 0px rgba(116, 119, 176, 0.25);
+          border-color: @white;
+          cursor: pointer;
+        }
+
+        span {
+          display: block;
+
+          /* vertical center */
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+
+          .fa {
+            display: block;
+            font-size: 30px;
+
+            &.fa-heartbeat {
+              color: #F44336;
+            }
+
+            &.fa-medkit {
+              color: #4CAF50;
+            }
+
+            &.fa-user {
+              color: #2196F3;
+            }
+          ;
+          }
+        }
+      }
+    }
+  }
+}
