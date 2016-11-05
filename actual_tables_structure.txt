@@ -1,0 +1,29 @@
+TABLE record
+	timeStamp
+	gender
+	age
+	visitType
+	journeyStage
+	addedBy
+	cancerSite
+
+Age
+	age
+
+Gender
+	gender
+
+StaffMember_Record
+	staffMember
+	record
+	timeStamp
+
+Activity_Record
+	activity
+	record
+	timeStamp
+
+Activity
+	name
+	category
+	isCore
