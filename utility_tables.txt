@@ -67,7 +67,7 @@ Returning
 
 
 TABLE activities
-IN THE FORMAT: name;category;core
+IN THE FORMAT: name;category;isCore
 FSG Bereavement;Facilitated Support Groups;1
 FSG Family and Friends;Facilitated Support Groups;1
 FSG General;Facilitated Support Groups;1

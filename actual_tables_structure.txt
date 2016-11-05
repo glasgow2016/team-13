@@ -1,11 +1,14 @@
-TABLE record
+Record
+	PERSON
 	timeStamp
 	gender
 	age
 	visitType
+	NATUREOFVISIT
 	journeyStage
 	addedBy
 	cancerSite
+	CENTRE
 
 Age
 	age
@@ -27,3 +30,12 @@ Activity
 	name
 	category
 	isCore
+
+Centre
+	name
+	location
+	region
+
+
+StaffMember
+	CENTRE
