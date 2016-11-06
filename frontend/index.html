@@ -18,8 +18,14 @@
     <script src="public/jquery.fullpage.js"></script>
     <link rel="stylesheet" href="public/jquery.fullpage.css">
 
+    <!-- Autocomplete library -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.21/jquery.autocomplete.js"></script>
+
     <!-- Font Awesome library -->
     <link rel="stylesheet" href="public/font-awesome.min.css">
+
+    <!-- VUE.js -->
+    <script src="https://unpkg.com/vue@2.0.5/dist/vue.js"></script>
 
     <!-- Main style.css -->
     <link rel="stylesheet" href="public/style.css">
@@ -126,8 +132,14 @@
     <div class="step__wrapper section">
         <div class="step">
             <h2>Activities</h2>
-            <div class="choices" >
+            <div class="activities" >
+                <div id="selected">
+                    <span v-for="activity in selected">
+                        {{ activity.value }}
+                    </span>
 
+                </div>
+                <input type="text" name="country" id="autocomplete" placeholder="SEARCH"/>
 
             </div>
         </div>
@@ -149,7 +161,491 @@
         }
     });
 
+    var activities = [
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Bereavement"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Family and Friends"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG General"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Men's"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Secondary Cancer"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Young Person's"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Young Women's"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Brain"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Breast"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Gynae"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Haematology"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Head/Neck"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Laryngectomy"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Lower GI"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Lung"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Lymphoedema"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Myeloma"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Prostate"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Rare"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Sarcoma"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Upper GI"
+        },
+        {
+            "category": "Psychological Support",
+            "isCore": true,
+            "value": "Psych Support - Couple"
+        },
+        {
+            "category": "Psychological Support",
+            "isCore": true,
+            "value": "Psych Support - Family"
+        },
+        {
+            "category": "Psychological Support",
+            "isCore": true,
+            "value": "Psych Support - Individual"
+        },
+        {
+            "category": "Benefits Advice",
+            "isCore": true,
+            "value": "Benefits - Couple"
+        },
+        {
+            "category": "Benefits Advice",
+            "isCore": true,
+            "value": "Benefits - Family"
+        },
+        {
+            "category": "Benefits Advice",
+            "isCore": true,
+            "value": "Benefits - Individual"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Benefits Workshop"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Caring for Someone with Cancer"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "enetics"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Getting Started with Cancer Treatment"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Kids Days"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Lecture Series"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Look Good Feel Better"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Managing Stress"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Bereavement"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Family and Friends"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG General"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Men's"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Secondary Cancer"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Young Person's"
+        },
+        {
+            "category": "Facilitated Support Groups",
+            "isCore": true,
+            "value": "FSG Young Women's"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Brain"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Breast"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Gynae"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Haematology"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Head/Neck"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Laryngectomy"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Lower GI"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Lung"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Lymphoedema"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Myeloma"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Prostate"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Rare"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Sarcoma"
+        },
+        {
+            "category": "Networking Group",
+            "isCore": true,
+            "value": "NG Upper GI"
+        },
+        {
+            "category": "Psychological Support",
+            "isCore": true,
+            "value": "Psych Support - Couple"
+        },
+        {
+            "category": "Psychological Support",
+            "isCore": true,
+            "value": "Psych Support - Family"
+        },
+        {
+            "category": "Psychological Support",
+            "isCore": true,
+            "value": "Psych Support - Individual"
+        },
+        {
+            "category": "Benefits Advice",
+            "isCore": true,
+            "value": "Benefits - Couple"
+        },
+        {
+            "category": "Benefits Advice",
+            "isCore": true,
+            "value": "Benefits - Family"
+        },
+        {
+            "category": "Benefits Advice",
+            "isCore": true,
+            "value": "Benefits - Individual"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Benefits Workshop"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Caring for Someone with Cancer"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "enetics"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Getting Started with Cancer Treatment"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Kids Days"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Lecture Series"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Look Good Feel Better"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Managing Stress"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Talking Heads: Managing Hair Loss"
+        },
+        {
+            "category": "C&W",
+            "isCore": true,
+            "value": "Where Now?"
+        },
+        {
+            "category": "Sessional",
+            "isCore": true,
+            "value": "Creative Writing"
+        },
+        {
+            "category": "Sessional",
+            "isCore": true,
+            "value": "Expressive art"
+        },
+        {
+            "category": "Sessional",
+            "isCore": true,
+            "value": "Nutrition"
+        },
+        {
+            "category": "Sessional",
+            "isCore": true,
+            "value": "Relaxation"
+        },
+        {
+            "category": "Sessional",
+            "isCore": true,
+            "value": "Tai Chi/Qi Gong"
+        },
+        {
+            "category": "Sessional",
+            "isCore": true,
+            "value": "Yoga"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Auricular Acupuncture"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Bereavement Course"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Cancer in the Workplace"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Fatigue Management"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Gardening"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Gentle Exercise"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Introduction to Radiotherapy"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Living With and Beyond Prostate Cancer"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Meditation"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Mind over Mood"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Mindfulness"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Music Therapy/Choir"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Nordic Walking"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Pilates"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Prosthesis"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Scrapbooking"
+        },
+        {
+            "category": "Additional",
+            "isCore": false,
+            "value": "Sleep"
+        }
+    ]
 
+    $('#autocomplete').autocomplete({
+        lookup: activities,
+        onSelect: function (suggestion) {
+            $(this).val('');
+            app4.selected.push({ value: suggestion.value });
+        }
+    });
 
     $('#fullpage').fullpage({
         onLeave: function(index, nextIndex, direction){
@@ -167,483 +663,15 @@
         $.fn.fullpage.moveSectionDown();
     });
 
-    var activities = [
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Bereavement"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Family and Friends"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG General"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Men's"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Secondary Cancer"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Young Person's"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Young Women's"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Brain"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Breast"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Gynae"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Haematology"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Head/Neck"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Laryngectomy"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Lower GI"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Lung"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Lymphoedema"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Myeloma"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Prostate"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Rare"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Sarcoma"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Upper GI"
-        },
-        {
-            "category": "Psychological Support",
-            "isCore": true,
-            "name": "Psych Support - Couple"
-        },
-        {
-            "category": "Psychological Support",
-            "isCore": true,
-            "name": "Psych Support - Family"
-        },
-        {
-            "category": "Psychological Support",
-            "isCore": true,
-            "name": "Psych Support - Individual"
-        },
-        {
-            "category": "Benefits Advice",
-            "isCore": true,
-            "name": "Benefits - Couple"
-        },
-        {
-            "category": "Benefits Advice",
-            "isCore": true,
-            "name": "Benefits - Family"
-        },
-        {
-            "category": "Benefits Advice",
-            "isCore": true,
-            "name": "Benefits - Individual"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Benefits Workshop"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Caring for Someone with Cancer"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "enetics"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Getting Started with Cancer Treatment"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Kids Days"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Lecture Series"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Look Good Feel Better"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Managing Stress"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Bereavement"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Family and Friends"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG General"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Men's"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Secondary Cancer"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Young Person's"
-        },
-        {
-            "category": "Facilitated Support Groups",
-            "isCore": true,
-            "name": "FSG Young Women's"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Brain"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Breast"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Gynae"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Haematology"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Head/Neck"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Laryngectomy"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Lower GI"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Lung"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Lymphoedema"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Myeloma"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Prostate"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Rare"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Sarcoma"
-        },
-        {
-            "category": "Networking Group",
-            "isCore": true,
-            "name": "NG Upper GI"
-        },
-        {
-            "category": "Psychological Support",
-            "isCore": true,
-            "name": "Psych Support - Couple"
-        },
-        {
-            "category": "Psychological Support",
-            "isCore": true,
-            "name": "Psych Support - Family"
-        },
-        {
-            "category": "Psychological Support",
-            "isCore": true,
-            "name": "Psych Support - Individual"
-        },
-        {
-            "category": "Benefits Advice",
-            "isCore": true,
-            "name": "Benefits - Couple"
-        },
-        {
-            "category": "Benefits Advice",
-            "isCore": true,
-            "name": "Benefits - Family"
-        },
-        {
-            "category": "Benefits Advice",
-            "isCore": true,
-            "name": "Benefits - Individual"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Benefits Workshop"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Caring for Someone with Cancer"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "enetics"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Getting Started with Cancer Treatment"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Kids Days"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Lecture Series"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Look Good Feel Better"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Managing Stress"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Talking Heads: Managing Hair Loss"
-        },
-        {
-            "category": "C&W",
-            "isCore": true,
-            "name": "Where Now?"
-        },
-        {
-            "category": "Sessional",
-            "isCore": true,
-            "name": "Creative Writing"
-        },
-        {
-            "category": "Sessional",
-            "isCore": true,
-            "name": "Expressive art"
-        },
-        {
-            "category": "Sessional",
-            "isCore": true,
-            "name": "Nutrition"
-        },
-        {
-            "category": "Sessional",
-            "isCore": true,
-            "name": "Relaxation"
-        },
-        {
-            "category": "Sessional",
-            "isCore": true,
-            "name": "Tai Chi/Qi Gong"
-        },
-        {
-            "category": "Sessional",
-            "isCore": true,
-            "name": "Yoga"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Auricular Acupuncture"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Bereavement Course"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Cancer in the Workplace"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Fatigue Management"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Gardening"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Gentle Exercise"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Introduction to Radiotherapy"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Living With and Beyond Prostate Cancer"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Meditation"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Mind over Mood"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Mindfulness"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Music Therapy/Choir"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Nordic Walking"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Pilates"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Prosthesis"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Scrapbooking"
-        },
-        {
-            "category": "Additional",
-            "isCore": false,
-            "name": "Sleep"
+    var selected = [];
+
+    var app4 = new Vue({
+        el: '#selected',
+        data: {
+            selected: [ ]
         }
-    ]
+    })
+
 
 </script>
 </body>
