@@ -64,9 +64,17 @@
             <h2>Gender</h2>
             <div class="choices" style="max-width: 400px;" data-field="gender">
                 <div data-val="male"><span><i class="fa fa-mars" aria-hidden="true"></i>Male</span></div>
-                <div data-val="under-18-male"><span><i class="fa fa-mars" aria-hidden="true"></i>Under 18 Male</span></div>
                 <div data-val="female"><span><i class="fa fa-venus" aria-hidden="true"></i>Female</span></div>
-                <div data-val="under-18-female"><span><i class="fa fa-venus" aria-hidden="true"></i>Under 18 Female</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step__wrapper section">
+        <div class="step">
+            <h2>Age</h2>
+            <div class="choices" style="max-width: 400px;" data-field="age">
+                <div data-val="under-18"><span>Under 18</span></div>
+                <div data-val="over-18"><span>Over 18</span></div>
             </div>
         </div>
     </div>
@@ -161,6 +169,10 @@
                         <td data-res="gender"></td>
                     </tr>
                     <tr>
+                        <td>Age</td>
+                        <td data-res="age"></td>
+                    </tr>
+                    <tr>
                         <td>Cancer Site</td>
                         <td data-res="cancer-site"></td>
                     </tr>
@@ -205,6 +217,7 @@
     function updateState() {
         var person = $('[data-field="person"]').find('.active').attr('data-val') || "";
         var visitType = $('[data-field="visit-type"]').find('.active').attr('data-val') || "";
+        var age = $('[data-field="age"]').find('.active').attr('data-val') || "";
         var gender = $('[data-field="gender"]').find('.active').attr('data-val') || "";
         var cancerSite = $('[data-field="cancer-site"]').find('.active').attr('data-val') || "";
         var journeyStage = $('[data-field="journey-stage"]').find('.active').attr('data-val') || "";
@@ -214,6 +227,7 @@
         state["person"] = person;
         state["visit_type"] = visitType;
         state["gender"] = gender;
+        state["age"] = age;
         state["cancer_site"] = cancerSite;
         state["journey_stage"] = journeyStage;
         state["nature_of_visit"] = natureOfVisit;
@@ -230,6 +244,7 @@
         $('[data-res="person"]').html(state.person);
         $('[data-res="visit-type"]').html(state.visitType);
         $('[data-res="gender"]').html(state.gender);
+        $('[data-res="age"]').html(state.age);
         $('[data-res="cancer-site"]').html(state.cancerSite);
         $('[data-res="journey-stage"]').html(state.journeyStage);
         $('[data-res="nature-of-visit"]').html(state.natureOfVisit);
