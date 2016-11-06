@@ -147,7 +147,37 @@
         <div class="step">
             <h2>Submission</h2>
             <div class="form" >
-
+                <table>
+                    <tr>
+                        <td>Person:</td>
+                        <td data-res="person"></td>
+                    </tr>
+                    <tr>
+                        <td>Visit Type</td>
+                        <td data-res="visit-type"></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td data-res="gender"></td>
+                    </tr>
+                    <tr>
+                        <td>Cancer Site</td>
+                        <td data-res="cancer-site"></td>
+                    </tr>
+                    <tr>
+                        <td>Journey State</td>
+                        <td data-res="journey-stage"></td>
+                    </tr>
+                    <tr>
+                        <td>Nature of Visit</td>
+                        <td data-res="nature-of-visit"></td>
+                    </tr>
+                    <tr>
+                        <td>Activities</td>
+                        <td data-res="activities"></td>
+                    </tr>
+                </table>
+                <button>Submit</button>
             </div>
         </div>
     </div>
@@ -182,16 +212,54 @@
         var activities = app4.selected;
 
         state["person"] = person;
-        state["visitType"] = visitType;
+        state["visit_type"] = visitType;
         state["gender"] = gender;
-        state["cancerSite"] = cancerSite;
-        state["journeyStage"] = journeyStage;
-        state["natureOfVisit"] = natureOfVisit;
+        state["cancer_site"] = cancerSite;
+        state["journey_stage"] = journeyStage;
+        state["nature_of_visit"] = natureOfVisit;
         state["activities"] = activities;
 
-        console.log(state)
+        console.log(JSON.stringify(state));
+
+
+        updateForm();
     }
 
+    function updateForm() {
+        $('[data-res="activities"]').html('');
+        $('[data-res="person"]').html(state.person);
+        $('[data-res="visit-type"]').html(state.visitType);
+        $('[data-res="gender"]').html(state.gender);
+        $('[data-res="cancer-site"]').html(state.cancerSite);
+        $('[data-res="journey-stage"]').html(state.journeyStage);
+        $('[data-res="nature-of-visit"]').html(state.natureOfVisit);
+        state.activities.forEach(function(el) {
+            $('[data-res="activities"]').append('<span>' + el.value + '</span>');
+        });
+
+    }
+    
+    $('button').on('click', function () {
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://ec2-52-49-113-6.eu-west-1.compute.amazonaws.com/index/",
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "cache-control": "no-cache",
+            },
+            "processData": false,
+            "data": JSON.stringify(state)
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+        
+    })
+    
     var activities = [
         {
             "category": "Facilitated Support Groups",
@@ -697,7 +765,7 @@
         $.fn.fullpage.moveSectionDown();
     });
 
-    var selected = [];
+    //var selected = [];
 
     var app4 = new Vue({
         el: '#selected',
