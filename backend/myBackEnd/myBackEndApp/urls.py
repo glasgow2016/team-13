@@ -11,4 +11,8 @@ urlpatterns = [
 	url(r'^create_report/$', views.create_report, name='create_report'),
     url(r'^query_DB/$', views.query_DB, name='query_DB')
 
+	url(r'^plots/$', views.plots, name='plots'),
+	url(r'^query_DB/$', views.query_DB, name='query_DB'),
+	url(r'^thankyou/$', views.thankyou, name='thankyou'),
+	url(r'^report/$', views.report, name='report'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
