@@ -13,6 +13,8 @@ class Record (models.Model):
     journeyStage = models.CharField(default='', max_length=100)
     natureOfVisit = models.CharField(default='', max_length=100)
     cancerSite = models.CharField(default='', max_length=100)
+    location = models.CharField(default='', max_length=100)
+    region = models.CharField(default='', max_length=100)
 
 
 class Activity(models.Model):
