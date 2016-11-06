@@ -16,9 +16,18 @@
 
     <!-- Chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="public/table2csv.js"></script>
 
     <!-- Main style.css -->
     <link rel="stylesheet" href="public/style.css">
+
+
 
 </head>
 <body>
@@ -103,6 +112,14 @@
         <button>Run query</button>
     </tr>
 
+    <div class="row" style="text-align: center;">
+        <div class="col-md-10 col-md-offset-1  table-responsive">
+            <table id="autoTable" class="table table-striped table-condensed table-bordered">
+            <tbody></tbody> 
+            </table>
+        </div>
+    </div>
+
     <script>
         $('select').on('change', function() {
             updateValues();
@@ -137,9 +154,40 @@
             }
 
             $.ajax(settings).done(function (response) {
-                console.log(response);
+                jsonToTable(response);
             });
         })
+
+        var jsonToTable = function(jsonData){
+            str = "<tr>";
+            $.each( jsonData.rows[0], function( key, value ) {
+                str = str + '<th style="text-align:center;">' + key + '</th>';
+            });
+            str = str + '</tr>';
+            for (var i = 0; i < table.cout; i++) {
+                str = str + '<tr>';
+                $.each( jsonData.rows[i], function( key, value ) {
+                    str = str + '<td>' + value + '</td>';
+                });
+                str = str + '</tr>';    
+            }
+            $("#autoTable tbody").html(str);
+
+            $('#autoTable').each(function () {
+                var $table = $(this);
+                var $button = $("<button type='button' class='btn'>");
+                $button.text("Export to spreadsheet");
+                $button.insertAfter($table);
+
+                $button.click(function () {
+                    var csv = $table.table2csv({
+                        delivery: 'value'
+                    });
+                    window.location.href = 'data:text/csv;charset=UTF-8,' 
+                    + encodeURIComponent(csv);
+                });
+            });
+        };
     </script>
 </table>
 

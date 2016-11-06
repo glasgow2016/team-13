@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Code for Good</title>
+
+    <!-- Fonts from TypeKit -->
+    <script>!function(e,t,n,a,c,l,m,o,d,f,h,i){c[l]&&(d=e.createElement(t),d[n]=c[l],e[a]("head")[0].appendChild(d),e.documentElement.className+=" wf-cached"),function s(){for(d=e[a](t),f="",h=0;h<d.length;h++)i=d[h][n],i.match(m)&&(f+=i);f&&(c[l]="/**/"+f),setTimeout(s,o+=o)}()}(document,"style","innerHTML","getElementsByTagName",localStorage,"tk",/^@font|^\.tk-/,100);</script>
+    <script src="https://use.typekit.net/ubb7zko.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- jQuery Fullpage plugin -->
+    <script src="public/jquery.fullpage.js"></script>
+    <link rel="stylesheet" href="public/jquery.fullpage.css">
+
+    <!-- Autocomplete library -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.21/jquery.autocomplete.js"></script>
+
+    <!-- Font Awesome library -->
+    <link rel="stylesheet" href="public/font-awesome.min.css">
+
+    <!-- VUE.js -->
+    <script src="https://unpkg.com/vue@2.0.5/dist/vue.js"></script>
+
+    <!-- Main style.css -->
+    <link rel="stylesheet" href="public/style.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="public/table2csv.js"></script>
+
+</head>
+<body>
+<div class="row" style="text-align: center;">
+	<div class="col-md-10 col-md-offset-1  table-responsive">
+		<table id="autoTable" class="table table-striped table-condensed table-bordered">
+		<tbody></tbody>	
+		</table>
+	</div>
+</div>
+
+<script>
+	var table = {
+	rows: [
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "CSS",
+	person: "Professional",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: ""
+	},
+	{
+	seenBy: "Centre Head",
+	person: "Carer",
+	journeyStage: "Bereaved",
+	cancerSite: "Lower GI",
+	location: "Glasgow",
+	visitType: "Returning",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Booked"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "CSS",
+	person: "Other Visitor",
+	journeyStage: "",
+	cancerSite: "",
+	location: "Glasgow",
+	visitType: "",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Outreach"
+	},
+	{
+	seenBy: "Centre Head",
+	person: "Carer",
+	journeyStage: "Post Treatment - Curative Intent",
+	cancerSite: "Breast",
+	location: "Glasgow",
+	visitType: "New",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Drop-In"
+	},
+	{
+	seenBy: "CSS",
+	person: "Carer",
+	journeyStage: "Bereaved",
+	cancerSite: "Brain/CNS",
+	location: "Glasgow",
+	visitType: "Returning",
+	gender: "Female",
+	age: "Under 18",
+	natureOfVisit: "Drop-In"
+	}
+	],
+cout: 54
+};
+
+$(document).ready(function () {
+
+	var jsonToTable = function(jsonData){
+		str = "<tr>";
+		$.each( jsonData.rows[0], function( key, value ) {
+			str = str + '<th style="text-align:center;">' + key + '</th>';
+		});
+		str = str + '</tr>';
+		for (var i = 0; i < table.cout; i++) {
+			str = str + '<tr>';
+			$.each( jsonData.rows[i], function( key, value ) {
+				str = str + '<td>' + value + '</td>';
+			});
+			str = str + '</tr>';	
+		}
+		$("#autoTable tbody").html(str);
+
+		$('#autoTable').each(function () {
+        	var $table = $(this);
+	        var $button = $("<button type='button' class='btn'>");
+	        $button.text("Export to spreadsheet");
+	        $button.insertAfter($table);
+
+	        $button.click(function () {
+	            var csv = $table.table2csv({
+	                delivery: 'value'
+	            });
+	            window.location.href = 'data:text/csv;charset=UTF-8,' 
+	            + encodeURIComponent(csv);
+	        });
+   		});
+	};
+    
+    jsonToTable(table);
+})
+
+</script>
+</body>
+</html>
