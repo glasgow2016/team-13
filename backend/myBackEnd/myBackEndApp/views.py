@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from .models import *
 import json
 
+
 @csrf_exempt
 def index(request):
     # we just save the record without the activities for now
@@ -21,25 +22,12 @@ def index(request):
         record.save()
         # activities = [{"category": "abc", "isCore": True, "name": "dsfd"}]
         for e in data['activities']:
-            a = Activity(name=e['name'],
-                         isCore=e['isCore'],
-                         category=e['category'],
+            a = Activity(value=e['value'],
                          record=record)
-            a.save()
+            # a.save()
         return HttpResponse()
     else:
         return render(request, "index.html")
-
-@csrf_exempt
-def plots(request):
-    # print('Number of records with at least one core activity:')
-    recordsCoreActivities = len(Record.objects.filter(activity__isCore=True))
-    recordsAdditionalActivities = len(Record.objects.filter(activity__isCore=False))
-    # print(len(Record.objects.filter(activity__isCore=True)))
-    # print('Number of records with at least one non-core activity:')
-    # print(len(Record.objects.filter(activity__isCore=False)))
-    return JsonResponse(json.dumps({'recordsCoreActivities': recordsCoreActivities,
-                                    'recordsAdditionalActivities': recordsAdditionalActivities}))
 
 @csrf_exempt
 def login(request):
@@ -52,6 +40,7 @@ def login(request):
                              "email": user.email})
     else:
         return JsonResponse({"Status": "Fail"})
+
 
 @csrf_exempt
 def activities(request):
@@ -73,6 +62,8 @@ def activities(request):
 #     #     record = Record(location="Glasgow", region="Scotland", timeStamp=date,seenBy=d["seenBy"], person=d["person"], visitType=d["visitType"], gender=d["gender"], age=d["age"], cancerSite=d["cancerSite"], journeyStage=d["journeySite"], natureOfVisit=d["natureOfVisit"])
 #     #     record.save()
 #     return HttpResponse("OK")
+
+
 @csrf_exempt
 def create_report(request):
 
@@ -90,7 +81,7 @@ def create_report(request):
             new_pwc_number_d1 = new_pwc_number_d1 + 1
         elif int(str(np.timeStamp)[9:10]) == day2:
             new_pwc_number_d2 = new_pwc_number_d2 + 1
-    
+
     new_carer_number_d1 = 0
     new_carer_number_d2 = 0
     for nc in new_carer:
@@ -121,6 +112,7 @@ def query_DB(request):
     # data = json.loads(request.body)
     # data=[{"column":"gender", "value":"Female"}, {"column":"age", "value": "Over 18"}, {"column":"seenBy", "value":"Centre Head"}]
     data = json.loads(request.body)
+
     data = data["list"]
 
     query = Record.objects.all()
@@ -144,5 +136,4 @@ def query_DB(request):
          "rows": records_list}
 
     return JsonResponse(j)
-
 
