@@ -52,8 +52,8 @@
         <div class="step">
             <h2>Visit Type</h2>
             <div class="choices" style="max-width: 400px;">
-                <div><span><i class="fa fa-heartbeat" aria-hidden="true"></i>New</span></div>
-                <div><span><i class="fa fa-medkit" aria-hidden="true"></i>Returning</span></div>
+                <div><span><i class="fa fa-user-plus" aria-hidden="true"></i>New</span></div>
+                <div><span><i class="fa fa-undo" aria-hidden="true"></i>Returning</span></div>
 
             </div>
         </div>
@@ -63,10 +63,10 @@
         <div class="step">
             <h2>Gender</h2>
             <div class="choices" style="max-width: 400px;">
-                <div><span><i class="fa fa-heartbeat" aria-hidden="true"></i>Male</span></div>
-                <div><span><i class="fa fa-medkit" aria-hidden="true"></i>Under 18 Male</span></div>
-                <div><span><i class="fa fa-heartbeat" aria-hidden="true"></i>Female</span></div>
-                <div><span><i class="fa fa-medkit" aria-hidden="true"></i>Under 18 Female</span></div>
+                <div><span><i class="fa fa-mars" aria-hidden="true"></i>Male</span></div>
+                <div><span><i class="fa fa-mars" aria-hidden="true"></i>Under 18 Male</span></div>
+                <div><span><i class="fa fa-venus" aria-hidden="true"></i>Female</span></div>
+                <div><span><i class="fa fa-venus" aria-hidden="true"></i>Under 18 Female</span></div>
             </div>
         </div>
     </div>
@@ -643,7 +643,7 @@
         lookup: activities,
         onSelect: function (suggestion) {
             $(this).val('');
-            app4.selected.push({ value: suggestion.value });
+            if(app4.selected.length < 3) app4.selected.push({ value: suggestion.value });
         }
     });
 
@@ -671,6 +671,15 @@
             selected: [ ]
         }
     })
+
+    $(document).on('click', '#selected span', function () {
+
+        var value = $(this).text().trim();
+        console.log(value)
+        app4.selected = app4.selected.filter(function (el) {
+            return el.value !== value;
+        });
+    });
 
 
 </script>
