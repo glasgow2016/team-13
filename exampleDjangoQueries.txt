@@ -1,17 +1,12 @@
-
 # for year=CurrentYear
 	visitType=New
 	person=PwC
 	timeStamp in CurrentQuartile
 	centre = SomeCentre
 
-now = datetime.datetime.now()
-low = datetime.datetime(year=now.year, month=1, day=1)
-high = datetime.datetime(year=now.year, month=1, day=1)
+member=StaffMember(name='Sam',staffGroup='CSS',location='Bratislava',region='Slovakia')
 
-ourCentre = Centre.objects.all.filter(location='SomeLocation', region='SomeRegion').get()
-
-record1 = Record.objects.filter(visitType = VisitType(visitType = 'New'), person = Person(person='PwC'), centre = ourCentre, timeStamp.timeStamp >  )
+record1 = Record.objects.filter(visitType = 'New', person = 'PwC', location = member.location, region = member.region, )
 
 # for year=CurrentYear-1
 	visitType=New
