@@ -4,6 +4,14 @@ gender
 age
 visit_type
 person
-cancer_type
 
 2. filter specific values
+
+person
+gender
+age
+cancer_site
+journey_stage
+nature_of_visit
+staff_group
+visit_type
