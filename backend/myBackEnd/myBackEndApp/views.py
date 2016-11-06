@@ -31,6 +31,21 @@ def index(request):
 
 
 @csrf_exempt
+def thankyou(request):
+    return render(request, "thankyou.html")
+
+
+@csrf_exempt
+def login(request):
+    return render(request, "login.html")
+
+
+@csrf_exempt
+def report(request):
+    return render(request, "report.html")
+
+
+@csrf_exempt
 def plots(request):
     print('Number of records with at least one core activity:')
     recordsCoreActivities = len(Record.objects.filter(activity__isCore=True))
