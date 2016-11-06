@@ -20,7 +20,7 @@ highTime = time.mktime(high.timetuple())
 # 
 member=StaffMember(name='Sam',staffGroup='CSS',location='Bratislava',region='Slovakia')
 # 
-record1 = Record.objects.filter(visitType = visitType, person = person, location = member.location, region = member.region, timeStamp >= lowTime, timeStamp <= highTime)
+#record1 = Record.objects.filter(visitType = visitType, person = person, location = member.location, region = member.region, timeStamp >= lowTime, timeStamp <= highTime)
 # 
 # print record1
 # 

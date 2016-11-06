@@ -4,16 +4,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from .models import *
 import json
-import csv
-# Create your views here
 
 @csrf_exempt
 def index(request):
     # we just save the record without the activities for now
     if request.method == 'POST':
-        # print("fdgdfg?fdgfdgfdgfdgdfgfdgdf")
-        print(request.POST)
-
         data = json.loads(request.body.decode("utf-8"))
         record = Record(timeStamp=datetime.now(),
                         gender=data['gender'],
@@ -36,6 +31,13 @@ def index(request):
         return render(request, "index.html")
 
 
+def plots(request):
+    print('Number of records with at least one core activity:')
+    print(len(Record.objects.filter(activity__isCore=True)))
+    print('Number of records with at least one non-core activity:')
+    print(len(Record.objects.filter(activity__isCore=False)))
+    return HttpResponse()
+
 """
 {
 "gender":"man",
@@ -50,7 +52,16 @@ def index(request):
 "activities":[{"category": "abc", "isCore": true, "name": "dsfd"},{"category": "abc", "isCore": false, "name": "dsfd"}]
 }
 """
+"""
+New Record:
+r = Record(gender='woman', age=55, person='sf',visitType='sserios',journeyStage='new',natureOfVisit='confidential',cancerSite='heaetr')
+r.save()
+Activity(name='exercise1', category='abc', isCore=True, record=r).save()
 
+Sample querying of ForeignKeys:
+# at least one case where isCore is true
+Record.objects.filter(activity__isCore=True)
+"""
 
 def login(request):
     userData = json.loads(request.body)
