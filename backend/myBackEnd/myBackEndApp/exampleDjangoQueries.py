@@ -12,6 +12,16 @@ quartile = 1
 year = datetime.datetime.now().year
 person = 'PwC'
 visitType = 'New'
+
+
+visitType
+person
+quartile
+year
+location
+region
+
+
 # 
 low = datetime.datetime(year=year, month=(quartile-1)*3+1, day=1)
 lowTime = time.mktime(low.timetuple())
@@ -53,3 +63,14 @@ highTime = time.mktime(high.timetuple())
 # 
 # 
 # 
+
+
+for each cancer_site
+person=PwC
+visit_type=New
+quartile=Some
+
+
+for each core activity
+total delivered
+percentage of total
