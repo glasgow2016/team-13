@@ -24,7 +24,7 @@ def index(request):
         for e in data['activities']:
             a = Activity(value=e['value'],
                          record=record)
-            a.save()
+            # a.save()
         return HttpResponse()
     else:
         return render(request, "index.html")
