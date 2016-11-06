@@ -420,6 +420,7 @@
         })
 
         var jsonToTable = function(jsonData){
+            $('#svbutton').remove();
             str = "<tr>";
             $.each( jsonData.rows[0], function( key, value ) {
                 str = str + '<th style="text-align:center;">' + key + '</th>';
@@ -435,8 +436,9 @@
             $("#autoTable tbody").html(str);
 
             $('#autoTable').each(function () {
+
                 var $table = $(this);
-                var $button = $("<button type='button' class='btn'>");
+                var $button = $("<button id=\"svbutton\" type='button' class='btn'>");
                 $button.text("Export to spreadsheet");
                 $button.insertAfter($table);
 
