@@ -4,8 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from .models import *
 import json
+import csv
 # Create your views here
-
 
 @csrf_exempt
 def index(request):
@@ -73,3 +73,56 @@ def activities(request):
                                 "isCore": activity.isCore})
 
     return JsonResponse({"activities": activities_list})
+
+
+# def add_data(request):
+#     print(len(Record.objects.filter(activity__isCore=True)))
+#     # for i in range(len(data)):
+#     #     d = data[i]
+#     #     date = "2016-11-05 " + str(i%24) + ":30:30"
+#     #     record = Record(location="Glasgow", region="Scotland", timeStamp=date,seenBy=d["seenBy"], person=d["person"], visitType=d["visitType"], gender=d["gender"], age=d["age"], cancerSite=d["cancerSite"], journeyStage=d["journeySite"], natureOfVisit=d["natureOfVisit"])
+#     #     record.save()
+#     return HttpResponse("OK")
+
+def create_report(request):
+
+    data = {"day1": 1,
+            "day2": 2}
+
+    new_pwc = Record.objects.filter(person="PwC", visitType="New")
+    new_carer = Record.objects.filter(person="Carer", visitType="New")
+
+    new_pwc_number_d1 = 0
+    new_pwc_number_d2 = 0
+    day1 = data["day1"]
+    day2 = data["day2"]
+    for np in new_pwc:
+        if int(str(np.timeStamp)[9:10]) == day1:
+            new_pwc_number_d1 = new_pwc_number_d1 + 1
+        elif int(str(np.timeStamp)[9:10]) == day2:
+            new_pwc_number_d2 = new_pwc_number_d2 + 1
+    
+    new_carer_number_d1 = 0
+    new_carer_number_d2 = 0
+    for nc in new_carer:
+        if int(str(nc.timeStamp)[9:10]) == day1:
+            new_carer_number_d1 = new_carer_number_d1 + 1
+        elif int(str(np.timeStamp)[9:10]) == day2:
+            new_carer_number_d2 = new_carer_number_d2 + 1
+
+    records = Record.objects.all()
+
+    total_visits_d1 = 0
+    total_visits_d2 = 0
+    for r in records:
+        if int(str(r.timeStamp)[9:10]) == day1:
+            total_visits_d1 = total_visits_d1 + 1
+        elif int(str(r.timeStamp)[9:10]) == day2:
+            total_visits_d2 = total_visits_d2 + 1
+
+    return JsonResponse({"New_PwC_day1" : new_pwc_number_d1,
+                         "New_PwC_day2" : new_pwc_number_d2,
+                         "New_Carer_day1" : new_carer_number_d1,
+                         "New_Carer_day2" : new_carer_number_d2,
+                         "Total_Visits_d1" : total_visits_d1,
+                         "Total_Visits_d2" : total_visits_d2})
