@@ -242,12 +242,12 @@
     function updateForm() {
         $('[data-res="activities"]').html('');
         $('[data-res="person"]').html(state.person);
-        $('[data-res="visit-type"]').html(state.visitType);
+        $('[data-res="visit-type"]').html(state.visit_type);
         $('[data-res="gender"]').html(state.gender);
         $('[data-res="age"]').html(state.age);
-        $('[data-res="cancer-site"]').html(state.cancerSite);
-        $('[data-res="journey-stage"]').html(state.journeyStage);
-        $('[data-res="nature-of-visit"]').html(state.natureOfVisit);
+        $('[data-res="cancer-site"]').html(state.cancer_site);
+        $('[data-res="journey-stage"]').html(state.journey_stage);
+        $('[data-res="nature-of-visit"]').html(state.nature_of_visit);
         state.activities.forEach(function(el) {
             $('[data-res="activities"]').append('<span>' + el.value + '</span>');
         });
@@ -255,24 +255,25 @@
     }
     
     $('button').on('click', function () {
-
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://localhost:8000/index/",
-            "method": "POST",
-            "headers": {
-                "content-type": "application/json",
-                "cache-control": "no-cache",
-            },
-            "processData": false,
-            "data": JSON.stringify(state)
-        }
-
-        $.ajax(settings).done(function (response) {
-            console.log(response);
-            //todo
-        });
+        alert('Thank you');
+        location.reload();
+//        var settings = {
+//            "async": true,
+//            "crossDomain": true,
+//            "url": "http://localhost:8000/index/",
+//            "method": "POST",
+//            "headers": {
+//                "content-type": "application/json",
+//                "cache-control": "no-cache",
+//            },
+//            "processData": false,
+//            "data": JSON.stringify(state)
+//        }
+//
+//        $.ajax(settings).done(function (response) {
+//            console.log(response);
+//            //todo
+//        });
         
     })
     

@@ -22,11 +22,180 @@
 
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="public/table2csv.js"></script>
+    <!--<script type="text/javascript" src="/public/table2csv.js"></script>-->
 
     <!-- Main style.css -->
-    <link rel="stylesheet" href="public/style.css">
+    <!--<link rel="stylesheet" href="/public/style.css">-->
+    <style>
+        * {
+            font-family: "soleil", sans-serif;
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .footer {
+            width: 100%;
+            height: 10vh;
+            position: fixed;
+            bottom: 0;
+            padding: 0 100px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer a {
+            font-weight: 900;
+            font-size: 30px;
+            color: #333;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        body {
+            background: #f1f1f1;
+            color: #333;
+            position: relative;
+        }
+        h2 {
+            font-size: 42px;
+        }
+        .autocomplete-suggestions {
+            background: #fff;
+            border: 1px solid #e6e6e6;
+            text-align: center;
+            font-size: 18px;
+        }
+        .autocomplete-suggestions:hover {
+            cursor: pointer;
+        }
+        .step__wrapper .step {
+            padding: 0 30px;
+        }
+        .step__wrapper .step h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .step__wrapper .step .form {
+            max-width: 400px;
+            margin: 0 auto;
+            font-size: 20px;
+        }
+        .step__wrapper .step .form button {
+            background: #4CAF50;
+            color: #fff;
+            font-size: 22px;
+            border: 0;
+            padding: 10px 20px;
+        }
+        .step__wrapper .step .form table {
+            width: 100%;
+        }
+        .step__wrapper .step .form table tr td:nth-child(2) {
+            text-align: right;
+        }
+        .step__wrapper .step .form table td {
+            border-bottom: 1px solid #e6e6e6;
+            padding: 5px 0 10px;
+        }
+        .step__wrapper .step .form table td span {
+            display: block;
+        }
+        .step__wrapper .step .activities #selected {
+            height: 60px;
+            text-align: center;
+        }
+        .step__wrapper .step .activities #selected span {
+            display: inline;
+            background: #fff;
+            border-radius: 30px;
+            padding: 10px 15px;
+            border: 4px solid #4CAF50;
+            margin: 0 10px;
+        }
+        .step__wrapper .step .activities #selected span:hover {
+            cursor: pointer;
+        }
+        .step__wrapper .step .activities input {
+            max-width: 400px;
+            height: 60px;
+            font-size: 22px;
+            width: 100%;
+            border: 1px solid #e6e6e6;
+            margin: 0 auto;
+            text-align: center;
+            display: block;
+        }
+        .step__wrapper .step .activities input:focus {
+            outline: none;
+        }
+        .step__wrapper .step .choices {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .step__wrapper .step .choices.small > div {
+            height: 50px;
+        }
+        .step__wrapper .step .choices > div {
+            width: 178px;
+            height: 178px;
+            background: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 22px;
+            border: 1px solid #e6e6e6;
+            transition: box-shadow 0.3s, border-color 0.3s;
+            position: relative;
+        }
+        .step__wrapper .step .choices > div:hover {
+            box-shadow: 0px 8px 50px 0px rgba(116, 119, 176, 0.25);
+            border-color: #fff;
+            cursor: pointer;
+        }
+        .step__wrapper .step .choices > div.active {
+            border: 4px solid #4CAF50;
+        }
+        .step__wrapper .step .choices > div span {
+            display: block;
+            /* vertical center */
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .step__wrapper .step .choices > div span .fa {
+            display: block;
+            font-size: 30px;
+        }
+        .step__wrapper .step .choices > div span .fa.fa-heartbeat {
+            color: #F44336;
+        }
+        .step__wrapper .step .choices > div span .fa.fa-medkit {
+            color: #4CAF50;
+        }
+        .step__wrapper .step .choices > div span .fa.fa-user {
+            color: #2196F3;
+        }
+        .step__wrapper .step .choices > div span .fa.fa-globe {
+            color: #795548;
+        }
+        .step__wrapper .step .choices > div span .fa.fa-building-o {
+            color: #607D8B;
+        }
+        .step__wrapper .step .choices > div span .fa.fa-mars {
+            color: #2196F3;
+        }
+        .step__wrapper .step .choices > div span .fa.fa-venus {
+            color: #E91E63;
+        }
+        .step__wrapper .step .choices > div span .fa.fa-user-plus {
+            color: #4CAF50;
+        }
 
+    </style>
 
 
 </head>
@@ -121,6 +290,98 @@
     </div>
 
     <script>
+        /* global jQuery */
+
+        (function($) {
+
+            var options = {
+                /* action='downoad' options */
+                filename: 'table.csv',
+
+                /* action='output' options */
+                appendTo: 'body',
+
+                /* general options */
+                separator: ',',
+                newline: '\n',
+                quoteFields: true,
+                excludeColumns: '',
+                excludeRows: ''
+            };
+
+            function quote(text) {
+                return '"' + text.replace('"', '""') + '"';
+            }
+
+            // taken from http://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
+            function download(filename, text) {
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+                element.setAttribute('download', filename);
+
+                element.style.display = 'none';
+                document.body.appendChild(element);
+
+                element.click();
+
+                document.body.removeChild(element);
+            }
+
+            function convert(table) {
+                var output = "";
+
+                var rows = table.find('tr').not(options.excludeRows);
+
+                var numCols = rows.first().find("td,th").filter(":visible").not(options.excludeColumns).length;
+                console.log(numCols)
+
+                rows.each(function() {
+                    $(this).find("td,th").filter(":visible").not(options.excludeColumns)
+                            .each(function(i, col) {
+                                col = $(col);
+
+                                output += options.quoteFields ? quote(col.text()) : col.text();
+                                console.log(i);
+                                if(i != numCols-1) {
+                                    output += options.separator;
+                                } else {
+                                    output += options.newline;
+                                }
+                            });
+                });
+
+                return output;
+            }
+
+            $.fn.table2csv = function(action, opt) {
+                if(typeof action === 'object') {
+                    opt = action;
+                    action = 'download';
+                } else if(action === undefined) {
+                    action = 'download';
+                }
+
+                $.extend(options, opt);
+
+                var table = this; // TODO use $.each
+
+                switch(action) {
+                    case 'download':
+                        var csv = convert(table);
+                        download(options.filename, csv);
+                        break;
+                    case 'output':
+                        var csv = convert(table);
+                        $(options.appendTo).append($('<pre>').text(csv));
+                        break;
+                }
+
+                return this;
+            }
+
+        }(jQuery));
+    </script>
+    <script>
         $('select').on('change', function() {
             updateValues();
         });
@@ -164,7 +425,7 @@
                 str = str + '<th style="text-align:center;">' + key + '</th>';
             });
             str = str + '</tr>';
-            for (var i = 0; i < table.cout; i++) {
+            for (var i = 0; i < jsonData.cout; i++) {
                 str = str + '<tr>';
                 $.each( jsonData.rows[i], function( key, value ) {
                     str = str + '<td>' + value + '</td>';
