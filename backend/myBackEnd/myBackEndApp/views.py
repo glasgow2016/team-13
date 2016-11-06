@@ -118,11 +118,31 @@ def create_report(request):
 
 @csrf_exempt
 def query_DB(request):
+    # data = json.loads(request.body)
+    # data=[{"column":"gender", "value":"Female"}, {"column":"age", "value": "Over 18"}, {"column":"seenBy", "value":"Centre Head"}]
     data = json.loads(request.body)
+    data = data["list"]
 
-    filter = data["column"]
+    query = Record.objects.all()
+    for i in range(len(data)):
+        filter1 = data[i]["column"]
+        query = query.filter(**{filter1:data[i]["value"]})
 
-    return HttpResponse(len(Record.objects.filter(**{filter: data["value"]})))
+    records_list = []
+    for q in query:
+        records_list.append({"gender": q.gender,
+                             "age": q.age,
+                             "seenBy": q.seenBy,
+                             "person": q.person,
+                             "visitType": q.visitType,
+                             "journeyStage": q.journeyStage,
+                             "natureOfVisit": q.natureOfVisit,
+                             "cancerSite": q.cancerSite,
+                             "location": q.location})
 
+    j = {"cout": len(query),
+         "rows": records_list}
+
+    return JsonResponse(j)
 
 
