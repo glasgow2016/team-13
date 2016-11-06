@@ -1,8 +1,16 @@
+import datetime
+
 # for year=CurrentYear
 	visitType=New
 	person=PwC
 	timeStamp in CurrentQuartile
 	centre = SomeCentre
+
+quartile = 1
+year = datetime.datetime.now().year
+
+low = (quartile-1)
+datetime.datetime.fromtimestamp()
 
 member=StaffMember(name='Sam',staffGroup='CSS',location='Bratislava',region='Slovakia')
 
