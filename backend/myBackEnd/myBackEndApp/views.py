@@ -73,7 +73,7 @@ def activities(request):
 #     #     record = Record(location="Glasgow", region="Scotland", timeStamp=date,seenBy=d["seenBy"], person=d["person"], visitType=d["visitType"], gender=d["gender"], age=d["age"], cancerSite=d["cancerSite"], journeyStage=d["journeySite"], natureOfVisit=d["natureOfVisit"])
 #     #     record.save()
 #     return HttpResponse("OK")
-
+@csrf_exempt
 def create_report(request):
 
     data = json.loads(request.body)
