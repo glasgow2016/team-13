@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Code for Good</title>
+
+    <!-- Fonts from TypeKit -->
+    <script>!function(e,t,n,a,c,l,m,o,d,f,h,i){c[l]&&(d=e.createElement(t),d[n]=c[l],e[a]("head")[0].appendChild(d),e.documentElement.className+=" wf-cached"),function s(){for(d=e[a](t),f="",h=0;h<d.length;h++)i=d[h][n],i.match(m)&&(f+=i);f&&(c[l]="/**/"+f),setTimeout(s,o+=o)}()}(document,"style","innerHTML","getElementsByTagName",localStorage,"tk",/^@font|^\.tk-/,100);</script>
+    <script src="https://use.typekit.net/ubb7zko.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+
+    <!-- Main style.css -->
+    <link rel="stylesheet" href="public/style.css">
+
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>Person</td>
+        <td>Visit Type</td>
+        <td>Gender</td>
+        <td>Age</td>
+        <td>Cancer Site</td>
+        <td>Journey Stage</td>
+        <td>Nature of Visit</td>
+    </tr>
+    <tr>
+        <td><select name="person" id="person">
+            <option value="none" >--</option>
+            <option value="PwC">PwC</option>
+            <option value="Carer">Carer</option>
+            <option value="Professional">Professional</option>
+            <option value="Architectural">Architectural</option>
+            <option value="International">International</option>
+            <option value="Other Visitor">Other Visitor</option>
+        </select></td>
+        <td><select name="visitType" id="visitType">
+            <option value="none" >--</option>
+            <option value="New">New</option>
+            <option value="Returning">Returning</option>
+        </select></td>
+        <td><select name="gender" id="gender">
+            <option value="none" >--</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select></td>
+        <td><select name="age" id="age">
+            <option value="none" >--</option>
+            <option value="Under 18">Under 18</option>
+            <option value="Over 18">Over 18</option>
+        </select></td>
+        <td><select name="cancerSite" id="cancerSite">
+            <option value="none" >--</option>
+            <option value="Brain/CNS">Brain/CNS</option>
+            <option value="Breast">Breast</option>
+            <option value="Gynae">Gynae</option>
+            <option value="Head/Neck">Head/Neck</option>
+            <option value="Haemat">Haemat</option>
+            <option value="Liver">Liver</option>
+            <option value="Lower GI">Lower GI</option>
+            <option value="Lung">Lung</option>
+            <option value="Pancreatic">Pancreatic</option>
+            <option value="Prostate">Prostate</option>
+            <option value="Rare">Rare</option>
+            <option value="Sarcoma">Sarcoma</option>
+            <option value="Skin/Mel">Skin/Mel</option>
+            <option value="Testicular">Testicular</option>
+            <option value="Unknown Primary">Unknown Primary</option>
+            <option value="Upper GI">Upper GI</option>
+            <option value="Urolog">Urolog</option>
+            <option value="Not Stated">Not Stated</option>
+        </select></td>
+        <td><select name="journeyStage" id="journeyStage">
+            <option value="none" >--</option>
+            <option value="Pre-Diagnosis">Pre-Diagnosis</option>
+            <option value="Curative Intent">Curative Intent</option>
+            <option value="Post Treatment - Curative Intent">Post Treatment - Curative Intent</option>
+            <option value="Non-Curative Intent">Non-Curative Intent</option>
+            <option value="Palliative Care">Palliative Care</option>
+            <option value="End of Life">End of Life</option>
+            <option value="Bereaved">Bereaved</option>
+            <option value="Not Stated">Not Stated</option>
+        </select></td>
+        <td><select name="natureOfVisit" id="natureOfVisit">
+            <option value="none">--</option>
+            <option value="Booked">Booked</option>
+            <option value="Drop-In">Drop-In</option>
+            <option value="Programme">Programme</option>
+            <option value="E-mail Support">E-mail Support</option>
+            <option value="Fundraising">Fundraising</option>
+            <option value="Outreach">Outreach</option>
+            <option value="Telephone Support">Telephone Support</option>
+        </select></td>
+        <button>Run query</button>
+    </tr>
+
+    <script>
+        $('select').on('change', function() {
+            updateValues();
+        });
+        var state = { "list": [] }
+        function updateValues() {
+            state = { "list": [] }
+
+            $('select').each(function() {
+                var colName = $(this).attr("name");
+                var value = $(this).val();
+                if(value == "none") return;
+
+                state.list.push({ "column": colName, "value": value})
+
+            });
+
+        }
+
+        $('button').on('click', function () {
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://localhost:8000/api/query_DB/",
+                "method": "POST",
+                "headers": {
+                    "content-type": "application/json",
+                    "cache-control": "no-cache",
+                },
+                "processData": false,
+                "data": JSON.stringify(state)
+            }
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+        })
+    </script>
+</table>
+
+</body>
+</html>
