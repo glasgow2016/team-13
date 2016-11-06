@@ -29,7 +29,6 @@ def index(request):
     else:
         return render(request, "index.html")
 
-<<<<<<< HEAD
 
 @csrf_exempt
 def thankyou(request):
@@ -86,8 +85,6 @@ Sample querying of ForeignKeys:
 Record.objects.filter(activity__isCore=True)
 """
 
-=======
->>>>>>> c124fd0605eedcc68d9f002a302e6098c24215bc
 @csrf_exempt
 def login(request):
     userData = json.loads(request.body)
@@ -195,4 +192,3 @@ def query_DB(request):
          "rows": records_list}
 
     return JsonResponse(j)
-
