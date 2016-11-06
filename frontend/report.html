@@ -126,7 +126,7 @@
             var settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "http://localhost:8000/",
+                "url": "http://localhost:8000/api/query_DB/",
                 "method": "POST",
                 "headers": {
                     "content-type": "application/json",
@@ -138,7 +138,6 @@
 
             $.ajax(settings).done(function (response) {
                 console.log(response);
-                //todo
             });
         })
     </script>
