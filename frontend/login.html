@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Code for Good</title>
+
+    <!-- Fonts from TypeKit -->
+    <script>!function(e,t,n,a,c,l,m,o,d,f,h,i){c[l]&&(d=e.createElement(t),d[n]=c[l],e[a]("head")[0].appendChild(d),e.documentElement.className+=" wf-cached"),function s(){for(d=e[a](t),f="",h=0;h<d.length;h++)i=d[h][n],i.match(m)&&(f+=i);f&&(c[l]="/**/"+f),setTimeout(s,o+=o)}()}(document,"style","innerHTML","getElementsByTagName",localStorage,"tk",/^@font|^\.tk-/,100);</script>
+    <script src="https://use.typekit.net/ubb7zko.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- jQuery Fullpage plugin -->
+    <script src="public/jquery.fullpage.js"></script>
+    <link rel="stylesheet" href="public/jquery.fullpage.css">
+
+    <!-- Autocomplete library -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.21/jquery.autocomplete.js"></script>
+
+    <!-- Font Awesome library -->
+    <link rel="stylesheet" href="public/font-awesome.min.css">
+
+    <!-- VUE.js -->
+    <script src="https://unpkg.com/vue@2.0.5/dist/vue.js"></script>
+
+    <!-- Main style.css -->
+    <link rel="stylesheet" href="public/style.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body class="page">
+<div class="row" style="text-align: center;">
+	<h1>Log in as a staff member</h1>
+	<div class="col-md-4 col-md-offset-4" style="text-align: center;">
+	<form role="form">	  
+	  <div class="form-group">
+	    <label for="username">Username:</label>
+	    <input type="text" class="form-control" name="username" placeholder="John" id="username" />
+	  </div>
+	  <div class="form-group">
+	    <label for="pwd">Password:</label>
+	    <input type="password" class="form-control" name="password" placeholder="" id="password" />
+	  </div>
+	  <div class="form-group alert alert-danger" id="message" style="display: none;">
+	    
+	  </div>
+
+	   <button type="submit" class="btn btn-primary" id="submit">Log me in</button>
+
+	</form>
+	</div>
+</div>
+<script>
+	$('#submit').on('click', function (e) {
+		e.preventDefault();
+        var usr = $('input[name="username"]').val();
+        var pwd = $('input[name="password"]').val();
+        if (usr == "user" && pwd == "password"){
+        	$("#message").hide();
+        	console.log("succes");
+        	window.location = 'index.html';
+        }else{
+        	$("#message").html("Bad luck").show(500);
+        }
+    });
+    $("#username").on("change keyup keydown",function(){
+    	$("#message").hide(500);	
+    });
+    $("#password").on("change keyup keydown",function(){
+    	$("#message").hide(500);	
+    });
+
+
+</script>
+</body>
+</html>
