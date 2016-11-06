@@ -63,6 +63,7 @@
 		e.preventDefault();
         var usr = $('input[name="username"]').val();
         var pwd = $('input[name="password"]').val();
+
         if (usr == "user" && pwd == "password"){
         	$("#message").hide();
         	console.log("succes");
@@ -77,6 +78,8 @@
     $("#password").on("keydown",function(){
     	$("#message").hide(500);	
     });
+
+
 
 
 </script>
