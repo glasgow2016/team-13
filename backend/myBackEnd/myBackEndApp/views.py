@@ -41,30 +41,6 @@ def plots(request):
     return JsonResponse(json.dumps({'recordsCoreActivities': recordsCoreActivities,
                                     'recordsAdditionalActivities': recordsAdditionalActivities}))
 
-"""
-{
-"gender":"man",
-"age":33,
-"person":"a",
-"visit_type":"b",
-"journey_stage":"Starting",
-"nature_of_visit":"DropIn",
-"cancer_site":"Brain",
-"region": "usa",
-"location": "Bratislava",
-"activities":[{"category": "abc", "isCore": true, "name": "dsfd"},{"category": "abc", "isCore": false, "name": "dsfd"}]
-}
-"""
-"""
-New Record:
-r = Record(gender='woman', age=55, person='sf',visitType='sserios',journeyStage='new',natureOfVisit='confidential',cancerSite='heaetr')
-r.save()
-Activity(name='exercise1', category='abc', isCore=True, record=r).save()
-
-Sample querying of ForeignKeys:
-# at least one case where isCore is true
-Record.objects.filter(activity__isCore=True)
-"""
 
 def login(request):
     userData = json.loads(request.body)
@@ -100,8 +76,7 @@ def activities(request):
 
 def create_report(request):
 
-    data = {"day1": 1,
-            "day2": 2}
+    data = json.loads(request.body)
 
     new_pwc = Record.objects.filter(person="PwC", visitType="New")
     new_carer = Record.objects.filter(person="Carer", visitType="New")
