@@ -48,6 +48,31 @@ h2 {
   text-align: center;
   margin-bottom: 30px;
 }
+.step__wrapper .step .form {
+  max-width: 400px;
+  margin: 0 auto;
+  font-size: 20px;
+}
+.step__wrapper .step .form button {
+  background: #4CAF50;
+  color: #fff;
+  font-size: 22px;
+  border: 0;
+  padding: 10px 20px;
+}
+.step__wrapper .step .form table {
+  width: 100%;
+}
+.step__wrapper .step .form table tr td:nth-child(2) {
+  text-align: right;
+}
+.step__wrapper .step .form table td {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 5px 0 10px;
+}
+.step__wrapper .step .form table td span {
+  display: block;
+}
 .step__wrapper .step .activities #selected {
   height: 60px;
   text-align: center;
