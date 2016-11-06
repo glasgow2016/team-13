@@ -19,9 +19,7 @@ class Record (models.Model):
 
 
 class Activity(models.Model):
-    name = models.CharField(default='', max_length=50)
-    category = models.CharField(default='', max_length=50)
-    isCore = models.BooleanField(default=True)
+    value = models.CharField(default='', max_length=50)
     record = models.ForeignKey(Record, on_delete=models.CASCADE)
 
 
