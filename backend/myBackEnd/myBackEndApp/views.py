@@ -30,7 +30,7 @@ def index(request):
     else:
         return render(request, "index.html")
 
-
+@csrf_exempt
 def plots(request):
     # print('Number of records with at least one core activity:')
     recordsCoreActivities = len(Record.objects.filter(activity__isCore=True))
@@ -41,7 +41,7 @@ def plots(request):
     return JsonResponse(json.dumps({'recordsCoreActivities': recordsCoreActivities,
                                     'recordsAdditionalActivities': recordsAdditionalActivities}))
 
-
+@csrf_exempt
 def login(request):
     userData = json.loads(request.body)
     username = userData["username"]
@@ -53,7 +53,7 @@ def login(request):
     else:
         return JsonResponse({"Status": "Fail"})
 
-
+@csrf_exempt
 def activities(request):
     activities = Activity.objects.all()
     activities_list = []
