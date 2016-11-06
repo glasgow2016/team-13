@@ -22,55 +22,12 @@ def index(request):
         record.save()
         # activities = [{"category": "abc", "isCore": True, "name": "dsfd"}]
         for e in data['activities']:
-            a = Activity(name=e['name'],
-                         isCore=e['isCore'],
-                         category=e['category'],
+            a = Activity(value=e['value'],
                          record=record)
-            a.save()
+            # a.save()
         return HttpResponse()
     else:
         return render(request, "index.html")
-
-
-@csrf_exempt
-def plots(request):
-    print('Number of records with at least one core activity:')
-    recordsCoreActivities = len(Record.objects.filter(activity__isCore=True))
-    recordsAdditionalActivities = len(Record.objects.filter(activity__isCore=False))
-    print(len(Record.objects.filter(activity__isCore=True)))
-    print('Number of records with at least one non-core activity:')
-    print(len(Record.objects.filter(activity__isCore=False)))
-    print(len(Record.objects.all()))
-    return HttpResponse()
-    # return JsonResponse(json.dumps({'recordsCoreActivities': recordsCoreActivities,
-    #                                 'recordsAdditionalActivities': recordsAdditionalActivities}))
-
-
-"""
-from myBackEndApp.models import *
-{
-"gender":"man",
-"age":33,
-"person":"a",
-"visit_type":"b",
-"journey_stage":"Starting",
-"nature_of_visit":"DropIn",
-"cancer_site":"Brain",
-"region": "usa",
-"location": "Bratislava",
-"activities":[{"category": "abc", "isCore": true, "name": "dsfd"},{"category": "abc", "isCore": false, "name": "dsfd"}]
-}
-"""
-"""
-New Record:
-r = Record(gender='woman', age=55, person='sf',visitType='sserios',journeyStage='new',natureOfVisit='confidential',cancerSite='heaetr')
-r.save()
-Activity(name='exercise1', category='abc', isCore=True, record=r).save()
-
-Sample querying of ForeignKeys:
-# at least one case where isCore is true
-Record.objects.filter(activity__isCore=True)
-"""
 
 @csrf_exempt
 def login(request):
@@ -152,11 +109,31 @@ def create_report(request):
 
 @csrf_exempt
 def query_DB(request):
+    # data = json.loads(request.body)
+    # data=[{"column":"gender", "value":"Female"}, {"column":"age", "value": "Over 18"}, {"column":"seenBy", "value":"Centre Head"}]
     data = json.loads(request.body)
 
-    filter = data["column"]
+    data = data["list"]
 
-    return HttpResponse(len(Record.objects.filter(**{filter: data["value"]})))
+    query = Record.objects.all()
+    for i in range(len(data)):
+        filter1 = data[i]["column"]
+        query = query.filter(**{filter1:data[i]["value"]})
 
+    records_list = []
+    for q in query:
+        records_list.append({"gender": q.gender,
+                             "age": q.age,
+                             "seenBy": q.seenBy,
+                             "person": q.person,
+                             "visitType": q.visitType,
+                             "journeyStage": q.journeyStage,
+                             "natureOfVisit": q.natureOfVisit,
+                             "cancerSite": q.cancerSite,
+                             "location": q.location})
 
+    j = {"cout": len(query),
+         "rows": records_list}
+
+    return JsonResponse(j)
 
