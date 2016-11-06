@@ -1,5 +1,6 @@
 import datetime
 import time
+import models
 # 
 # # for year=CurrentYear
 # #	visitType=New
@@ -18,9 +19,9 @@ lowTime = time.mktime(low.timetuple())
 high = datetime.datetime(year=year, month=quartile*3+1, day=30)
 highTime = time.mktime(high.timetuple())
 # 
-member=StaffMember(name='Sam',staffGroup='CSS',location='Bratislava',region='Slovakia')
+#member=StaffMember(name='Sam',staffGroup='CSS',location='Bratislava',region='Slovakia')
 # 
-record1 = Record.objects.filter(visitType = visitType, person = person, location = member.location, region = member.region, timeStamp >= lowTime, timeStamp <= highTime)
+#record1 = Record.objects.filter(visitType = visitType, person = person, location = member.location, region = member.region, timeStamp >= lowTime, timeStamp <= highTime)
 # 
 # print record1
 # 
