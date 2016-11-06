@@ -4,16 +4,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from .models import *
 import json
-# Create your views here
 
 
 @csrf_exempt
 def index(request):
     # we just save the record without the activities for now
     if request.method == 'POST':
-        # print("fdgdfg?fdgfdgfdgfdgdfgfdgdf")
-        print(request.POST)
-
         data = json.loads(request.body.decode("utf-8"))
         record = Record(timeStamp=datetime.now(),
                         gender=data['gender'],
