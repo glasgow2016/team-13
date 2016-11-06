@@ -1,3 +1,14 @@
+import os
+
+from django.conf import settings
+#
+# settings.configure()
+# import django
+# django.setup()
+# from models import *
+# from myBackEnd.myBackEnd import settings
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myBackEnd.myBackEnd.settings")
+# settings.configure()
 """
 Django settings for myBackEnd project.
 
@@ -120,10 +131,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATIC_URL = '/index/public/' # os.path.join(BASE_DIR, 'frontend', 'public/')
-STATIC_ROOT = '/public/'
-#
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "frontend", "public"),
-    '/index/public/'
-]
+STATIC_URL = os.path.join(BASE_DIR, 'frontend', 'public/')
+settings.configure()
+from models import Record
+
+
+def plot1():
+    print('Number of records with at least one core activity:')
+    print(len(Record.objects.filter(activity__isCore=True)))
+    print('Number of records with at least one non-core activity:')
+    print(len(Record.objects.filter(activity__isCore=False)))
+
+plot1()
