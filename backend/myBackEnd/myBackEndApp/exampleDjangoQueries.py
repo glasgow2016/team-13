@@ -74,3 +74,10 @@ quartile=Some
 for each core activity
 total delivered
 percentage of total
+
+
+RECORDS such that
+	centre=SomeCentre
+	year=SomeYear
+	location=SomeLocation
+	region=SomeRegion
