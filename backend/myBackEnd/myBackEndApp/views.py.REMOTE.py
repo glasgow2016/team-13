@@ -29,65 +29,6 @@ def index(request):
     else:
         return render(request, "index.html")
 
-<<<<<<< HEAD
-
-@csrf_exempt
-def thankyou(request):
-    return render(request, "thankyou.html")
-
-
-@csrf_exempt
-def login(request):
-    return render(request, "login.html")
-
-
-@csrf_exempt
-def report(request):
-    return render(request, "report.html")
-
-
-@csrf_exempt
-def plots(request):
-    print('Number of records with at least one core activity:')
-    recordsCoreActivities = len(Record.objects.filter(activity__isCore=True))
-    recordsAdditionalActivities = len(Record.objects.filter(activity__isCore=False))
-    print(len(Record.objects.filter(activity__isCore=True)))
-    print('Number of records with at least one non-core activity:')
-    print(len(Record.objects.filter(activity__isCore=False)))
-    print(len(Record.objects.all()))
-    return HttpResponse()
-    # return JsonResponse(json.dumps({'recordsCoreActivities': recordsCoreActivities,
-    #                                 'recordsAdditionalActivities': recordsAdditionalActivities}))
-
-
-"""
-from myBackEndApp.models import *
-{
-"gender":"man",
-"age":33,
-"person":"a",
-"visit_type":"b",
-"journey_stage":"Starting",
-"nature_of_visit":"DropIn",
-"cancer_site":"Brain",
-"region": "usa",
-"location": "Bratislava",
-"activities":[{"category": "abc", "isCore": true, "name": "dsfd"},{"category": "abc", "isCore": false, "name": "dsfd"}]
-}
-"""
-"""
-New Record:
-r = Record(gender='woman', age=55, person='sf',visitType='sserios',journeyStage='new',natureOfVisit='confidential',cancerSite='heaetr')
-r.save()
-Activity(name='exercise1', category='abc', isCore=True, record=r).save()
-
-Sample querying of ForeignKeys:
-# at least one case where isCore is true
-Record.objects.filter(activity__isCore=True)
-"""
-
-=======
->>>>>>> c124fd0605eedcc68d9f002a302e6098c24215bc
 @csrf_exempt
 def login(request):
     userData = json.loads(request.body)

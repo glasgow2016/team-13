@@ -29,22 +29,6 @@ def index(request):
     else:
         return render(request, "index.html")
 
-<<<<<<< HEAD
-
-@csrf_exempt
-def thankyou(request):
-    return render(request, "thankyou.html")
-
-
-@csrf_exempt
-def login(request):
-    return render(request, "login.html")
-
-
-@csrf_exempt
-def report(request):
-    return render(request, "report.html")
-
 
 @csrf_exempt
 def plots(request):
@@ -86,8 +70,6 @@ Sample querying of ForeignKeys:
 Record.objects.filter(activity__isCore=True)
 """
 
-=======
->>>>>>> c124fd0605eedcc68d9f002a302e6098c24215bc
 @csrf_exempt
 def login(request):
     userData = json.loads(request.body)
@@ -168,31 +150,8 @@ def create_report(request):
 
 @csrf_exempt
 def query_DB(request):
-    # data = json.loads(request.body)
-    # data=[{"column":"gender", "value":"Female"}, {"column":"age", "value": "Over 18"}, {"column":"seenBy", "value":"Centre Head"}]
     data = json.loads(request.body)
 
-    data = data["list"]
+    filter = data["column"]
 
-    query = Record.objects.all()
-    for i in range(len(data)):
-        filter1 = data[i]["column"]
-        query = query.filter(**{filter1:data[i]["value"]})
-
-    records_list = []
-    for q in query:
-        records_list.append({"gender": q.gender,
-                             "age": q.age,
-                             "seenBy": q.seenBy,
-                             "person": q.person,
-                             "visitType": q.visitType,
-                             "journeyStage": q.journeyStage,
-                             "natureOfVisit": q.natureOfVisit,
-                             "cancerSite": q.cancerSite,
-                             "location": q.location})
-
-    j = {"cout": len(query),
-         "rows": records_list}
-
-    return JsonResponse(j)
-
+    return HttpResponse(len(Record.objects.filter(**{filter: data["value"]})))
