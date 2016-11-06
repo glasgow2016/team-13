@@ -149,3 +149,14 @@ def create_report(request):
                          "New_Carer_day2" : new_carer_number_d2,
                          "Total_Visits_d1" : total_visits_d1,
                          "Total_Visits_d2" : total_visits_d2})
+
+@csrf_exempt
+def query_DB(request):
+    data = json.loads(request.body)
+
+    filter = data["column"]
+
+    return HttpResponse(len(Record.objects.filter(**{filter: data["value"]})))
+
+
+
