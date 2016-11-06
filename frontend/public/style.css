@@ -32,12 +32,46 @@ body {
 h2 {
   font-size: 42px;
 }
+.autocomplete-suggestions {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  text-align: center;
+  font-size: 18px;
+}
+.autocomplete-suggestions:hover {
+  cursor: pointer;
+}
 .step__wrapper .step {
   padding: 0 30px;
 }
 .step__wrapper .step h2 {
   text-align: center;
   margin-bottom: 30px;
+}
+.step__wrapper .step .activities #selected {
+  height: 60px;
+  margin: 0 auto;
+}
+.step__wrapper .step .activities #selected span {
+  display: inline-block;
+  background: #fff;
+  border-radius: 30px;
+  padding: 10px 15px;
+  border: 1px solid #e6e6e6;
+  margin-right: 10px;
+}
+.step__wrapper .step .activities input {
+  max-width: 400px;
+  height: 60px;
+  font-size: 22px;
+  width: 100%;
+  border: 1px solid #e6e6e6;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+.step__wrapper .step .activities input:focus {
+  outline: none;
 }
 .step__wrapper .step .choices {
   max-width: 600px;

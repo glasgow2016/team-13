@@ -1,6 +1,18 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from datetime import datetime
+
+
+class Record (models.Model):
+    timeStamp = models.DateTimeField(default=datetime.now)
+    gender = models.CharField(default='', max_length=50)
+    age = models.IntegerField(default=0)
+    person = models.CharField(default='', max_length=50)
+    visitType = models.CharField(default='', max_length=100)
+    journeyStage = models.CharField(default='', max_length=100)
+    natureOfVisit = models.CharField(default='', max_length=100)
+    cancerSite = models.CharField(default='', max_length=100)
 
 
 class Activity(models.Model):
@@ -19,14 +31,3 @@ class StaffMember (models.Model):
     location = models.CharField(default='', max_length=100)
     region = models.CharField(default='', max_length=100)
     record = models.ForeignKey(Record, on_delete=models.CASCADE)
-
-
-class Record (models.Model):
-    timeStamp = models.DateTimeField()
-    gender = models.CharField(default='', max_length=50)
-    age = models.IntegerField(default = 0)
-    person = models.CharField(default='', max_length=50)
-    visitType = models.CharField(default='', max_length=100)
-    journeyStage = models.CharField(default='', max_length=100)
-    natureOfVisit = models.CharField(default='', max_length=100)
-    cancerSite = models.CharField(default='', max_length=100)
