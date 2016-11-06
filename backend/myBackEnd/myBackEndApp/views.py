@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from .models import *
 import json
 
+
 @csrf_exempt
 def index(request):
     # we just save the record without the activities for now
@@ -32,16 +33,19 @@ def index(request):
 
 
 def plots(request):
-    # print('Number of records with at least one core activity:')
+    print('Number of records with at least one core activity:')
     recordsCoreActivities = len(Record.objects.filter(activity__isCore=True))
     recordsAdditionalActivities = len(Record.objects.filter(activity__isCore=False))
-    # print(len(Record.objects.filter(activity__isCore=True)))
-    # print('Number of records with at least one non-core activity:')
-    # print(len(Record.objects.filter(activity__isCore=False)))
-    return JsonResponse(json.dumps({'recordsCoreActivities': recordsCoreActivities,
-                                    'recordsAdditionalActivities': recordsAdditionalActivities}))
+    print(len(Record.objects.filter(activity__isCore=True)))
+    print('Number of records with at least one non-core activity:')
+    print(len(Record.objects.filter(activity__isCore=False)))
+    print(len(Record.objects.all()))
+    return HttpResponse()
+    # return JsonResponse(json.dumps({'recordsCoreActivities': recordsCoreActivities,
+    #                                 'recordsAdditionalActivities': recordsAdditionalActivities}))
 
 """
+from myBackEndApp.models import *
 {
 "gender":"man",
 "age":33,
@@ -115,7 +119,7 @@ def create_report(request):
             new_pwc_number_d1 = new_pwc_number_d1 + 1
         elif int(str(np.timeStamp)[9:10]) == day2:
             new_pwc_number_d2 = new_pwc_number_d2 + 1
-    
+
     new_carer_number_d1 = 0
     new_carer_number_d2 = 0
     for nc in new_carer:
