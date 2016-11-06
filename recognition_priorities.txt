@@ -1,9 +1,0 @@
-1. display table of basic parameters
-
-gender
-age
-visit_type
-person
-cancer_type
-
-2. filter specific values
