@@ -259,7 +259,7 @@
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "http://ec2-52-49-113-6.eu-west-1.compute.amazonaws.com/index/",
+            "url": "http://localhost:8000/",
             "method": "POST",
             "headers": {
                 "content-type": "application/json",
@@ -271,7 +271,7 @@
 
         $.ajax(settings).done(function (response) {
             console.log(response);
-            console.log('success');
+            //todo
         });
         
     })
