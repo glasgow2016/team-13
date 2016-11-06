@@ -36,6 +36,13 @@ def index(request):
         return render(request, "index.html")
 
 
+def plots(request):
+    print('Number of records with at least one core activity:')
+    print(len(Record.objects.filter(activity__isCore=True)))
+    print('Number of records with at least one non-core activity:')
+    print(len(Record.objects.filter(activity__isCore=False)))
+    return HttpResponse()
+
 """
 {
 "gender":"man",
