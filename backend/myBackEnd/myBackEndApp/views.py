@@ -32,6 +32,7 @@ def index(request):
         return render(request, "index.html")
 
 
+@csrf_exempt
 def plots(request):
     print('Number of records with at least one core activity:')
     recordsCoreActivities = len(Record.objects.filter(activity__isCore=True))
@@ -43,6 +44,7 @@ def plots(request):
     return HttpResponse()
     # return JsonResponse(json.dumps({'recordsCoreActivities': recordsCoreActivities,
     #                                 'recordsAdditionalActivities': recordsAdditionalActivities}))
+
 
 """
 from myBackEndApp.models import *
@@ -70,6 +72,7 @@ Sample querying of ForeignKeys:
 Record.objects.filter(activity__isCore=True)
 """
 
+@csrf_exempt
 def login(request):
     userData = json.loads(request.body)
     username = userData["username"]
@@ -82,6 +85,7 @@ def login(request):
         return JsonResponse({"Status": "Fail"})
 
 
+@csrf_exempt
 def activities(request):
     activities = Activity.objects.all()
     activities_list = []
@@ -102,10 +106,11 @@ def activities(request):
 #     #     record.save()
 #     return HttpResponse("OK")
 
+
+@csrf_exempt
 def create_report(request):
 
-    data = {"day1": 1,
-            "day2": 2}
+    data = json.loads(request.body)
 
     new_pwc = Record.objects.filter(person="PwC", visitType="New")
     new_carer = Record.objects.filter(person="Carer", visitType="New")
