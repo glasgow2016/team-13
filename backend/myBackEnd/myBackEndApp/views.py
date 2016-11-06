@@ -33,11 +33,14 @@ def index(request):
 
 
 def plots(request):
-    print('Number of records with at least one core activity:')
-    print(len(Record.objects.filter(activity__isCore=True)))
-    print('Number of records with at least one non-core activity:')
-    print(len(Record.objects.filter(activity__isCore=False)))
-    return HttpResponse()
+    # print('Number of records with at least one core activity:')
+    recordsCoreActivities = len(Record.objects.filter(activity__isCore=True))
+    recordsAdditionalActivities = len(Record.objects.filter(activity__isCore=False))
+    # print(len(Record.objects.filter(activity__isCore=True)))
+    # print('Number of records with at least one non-core activity:')
+    # print(len(Record.objects.filter(activity__isCore=False)))
+    return JsonResponse(json.dumps({'recordsCoreActivities': recordsCoreActivities,
+                                    'recordsAdditionalActivities': recordsAdditionalActivities}))
 
 """
 {
