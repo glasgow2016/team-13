@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from .models import *
 import json
 
+
 @csrf_exempt
 def index(request):
     # we just save the record without the activities for now
@@ -31,17 +32,22 @@ def index(request):
         return render(request, "index.html")
 
 
+@csrf_exempt
 def plots(request):
-    # print('Number of records with at least one core activity:')
+    print('Number of records with at least one core activity:')
     recordsCoreActivities = len(Record.objects.filter(activity__isCore=True))
     recordsAdditionalActivities = len(Record.objects.filter(activity__isCore=False))
-    # print(len(Record.objects.filter(activity__isCore=True)))
-    # print('Number of records with at least one non-core activity:')
-    # print(len(Record.objects.filter(activity__isCore=False)))
-    return JsonResponse(json.dumps({'recordsCoreActivities': recordsCoreActivities,
-                                    'recordsAdditionalActivities': recordsAdditionalActivities}))
+    print(len(Record.objects.filter(activity__isCore=True)))
+    print('Number of records with at least one non-core activity:')
+    print(len(Record.objects.filter(activity__isCore=False)))
+    print(len(Record.objects.all()))
+    return HttpResponse()
+    # return JsonResponse(json.dumps({'recordsCoreActivities': recordsCoreActivities,
+    #                                 'recordsAdditionalActivities': recordsAdditionalActivities}))
+
 
 """
+from myBackEndApp.models import *
 {
 "gender":"man",
 "age":33,
@@ -66,6 +72,7 @@ Sample querying of ForeignKeys:
 Record.objects.filter(activity__isCore=True)
 """
 
+@csrf_exempt
 def login(request):
     userData = json.loads(request.body)
     username = userData["username"]
@@ -78,6 +85,7 @@ def login(request):
         return JsonResponse({"Status": "Fail"})
 
 
+@csrf_exempt
 def activities(request):
     activities = Activity.objects.all()
     activities_list = []
@@ -98,10 +106,11 @@ def activities(request):
 #     #     record.save()
 #     return HttpResponse("OK")
 
+
+@csrf_exempt
 def create_report(request):
 
-    data = {"day1": 1,
-            "day2": 2}
+    data = json.loads(request.body)
 
     new_pwc = Record.objects.filter(person="PwC", visitType="New")
     new_carer = Record.objects.filter(person="Carer", visitType="New")
@@ -115,7 +124,7 @@ def create_report(request):
             new_pwc_number_d1 = new_pwc_number_d1 + 1
         elif int(str(np.timeStamp)[9:10]) == day2:
             new_pwc_number_d2 = new_pwc_number_d2 + 1
-    
+
     new_carer_number_d1 = 0
     new_carer_number_d2 = 0
     for nc in new_carer:
@@ -140,3 +149,14 @@ def create_report(request):
                          "New_Carer_day2" : new_carer_number_d2,
                          "Total_Visits_d1" : total_visits_d1,
                          "Total_Visits_d2" : total_visits_d2})
+
+@csrf_exempt
+def query_DB(request):
+    data = json.loads(request.body)
+
+    filter = data["column"]
+
+    return HttpResponse(len(Record.objects.filter(**{filter: data["value"]})))
+
+
+
