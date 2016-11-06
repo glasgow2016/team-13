@@ -50,7 +50,16 @@ def index(request):
 "activities":[{"category": "abc", "isCore": true, "name": "dsfd"},{"category": "abc", "isCore": false, "name": "dsfd"}]
 }
 """
+"""
+New Record:
+r = Record(gender='woman', age=55, person='sf',visitType='sserios',journeyStage='new',natureOfVisit='confidential',cancerSite='heaetr')
+r.save()
+Activity(name='exercise1', category='abc', isCore=True, record=r).save()
 
+Sample querying of ForeignKeys:
+# at least one case where isCore is true
+Record.objects.filter(activity__isCore=True)
+"""
 
 def login(request):
     userData = json.loads(request.body)
