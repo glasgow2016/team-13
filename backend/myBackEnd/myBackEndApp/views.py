@@ -11,22 +11,27 @@ import json
 def index(request):
     # we just save the record without the activities for now
     if request.method == 'POST':
+        # print("fdgdfg?fdgfdgfdgfdgdfgfdgdf")
+        print(request.POST)
+
+        data = json.loads(request.body.decode("utf-8"))
         record = Record(timeStamp=datetime.now(),
-                        gender=request.body['gender'],
-                        age=request.body['age'],
-                        person=request.body['person'],
-                        visitType=request.body['visit_type'],
-                        journeyStage=request.body['journey_stage'],
-                        natureOfVisit=request.body['nature_of_visit'],
-                        cancerSite=request.body['cancer_site'])
+                        gender=data['gender'],
+                        age=data['age'],
+                        person=data['person'],
+                        visitType=data['visit_type'],
+                        journeyStage=data['journey_stage'],
+                        natureOfVisit=data['nature_of_visit'],
+                        cancerSite=data['cancer_site'])
         record.save()
         # activities = [{"category": "abc", "isCore": True, "name": "dsfd"}]
-        for e in request.body['activities']:
+        for e in data['activities']:
             a = Activity(name=e['name'],
                          isCore=e['isCore'],
                          category=e['category'],
                          record=record)
             a.save()
+        return HttpResponse()
     else:
         return render(request, "index.html")
 
@@ -41,8 +46,8 @@ def index(request):
 "nature_of_visit":"DropIn",
 "cancer_site":"Brain",
 "region": "usa",
-"location": "Bratislava"
-"activities":[{"category": "abc", "isCore": True, "name": "dsfd"},{"category": "abc", "isCore": False, "name": "dsfd"}]
+"location": "Bratislava",
+"activities":[{"category": "abc", "isCore": true, "name": "dsfd"},{"category": "abc", "isCore": false, "name": "dsfd"}]
 }
 """
 
