@@ -22,9 +22,7 @@ def index(request):
         record.save()
         # activities = [{"category": "abc", "isCore": True, "name": "dsfd"}]
         for e in data['activities']:
-            a = Activity(name=e['name'],
-                         isCore=e['isCore'],
-                         category=e['category'],
+            a = Activity(value=e['value'],
                          record=record)
             a.save()
         return HttpResponse()
@@ -157,6 +155,3 @@ def query_DB(request):
     filter = data["column"]
 
     return HttpResponse(len(Record.objects.filter(**{filter: data["value"]})))
-
-
-
